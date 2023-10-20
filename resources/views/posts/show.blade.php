@@ -1,7 +1,7 @@
 <x-layout>
     <x-card class="mx-80 my-10">
         <div class="flex mb-4">
-            <img src="{{ asset('storage/'.$post->image_path) }}" alt="" class="w-14 h-14 object-cover rounded-full">
+            <img src="{{ asset('storage/'.$post->user->image_path) }}" alt="" class="w-14 h-14 object-cover rounded-full">
             <label class="flex items-center mx-4 text-xl">{{$post->user->username}}</label>
         </div>
         <div class="mb-4">
