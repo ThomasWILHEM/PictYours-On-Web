@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,7 +12,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+
+        return view("posts.index", [
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -19,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("posts.create");
     }
 
     /**
@@ -27,15 +32,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $data = $request->validate([
+            'description' => 'string',
+            'image' => 'file'
+        ]);
+
+        $file = $request->file('image');
+        $path = $file->store('images', 'private');
+
+        Post::create([
+            'description' => $data['description'],
+            'user_id' => 1,
+            'image_path' => $path
+        ]);
+
+        return redirect('/');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('posts.show', ['post' => $post]);
     }
 
     /**

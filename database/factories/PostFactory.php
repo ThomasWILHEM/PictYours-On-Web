@@ -18,7 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'description' => fake()->sentences(1, true),
-            'image_path' => 'test'
+            'image_path' => 'images/Heuv2SdAnL7g0VeqloJ5TxqdoxNRP9ZbDNvlpLbo.png'
         ];
     }
 }
