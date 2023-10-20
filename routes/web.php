@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,8 @@ Route::get('/', function () {
 
 Route::resource('posts', PostController::class);
 Route::resource('users', UserController::class);
+
+Route::redirect('login', 'auth');
+
+Route::resource('auth', AuthController::class)
+    ->only(['create', 'store', 'destroy']);
