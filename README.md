@@ -56,7 +56,7 @@ To run PictYours locally using Laravel, follow these steps:
    php artisan migrate
    ```
 
-7. Populate teh database with the seeder:
+7. Populate the database with the seeder:
 
    ```
    php artisan migrate:refresh --seed
