@@ -22,6 +22,7 @@ Route::get('/', function () {
 });
 
 Route::resource('posts', PostController::class);
+
 Route::resource('users', UserController::class);
 
 Route::redirect('login', 'auth');
