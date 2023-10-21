@@ -1,4 +1,6 @@
 <x-layout>
+    <h1 class="my-16 text-center text-4xl font-medium text-slate-600">Register</h1>
+
     <x-card class="py-8 px-16 mx-96 mt-4">
         <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

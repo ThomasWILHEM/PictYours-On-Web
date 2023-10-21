@@ -35,20 +35,21 @@ class PostController extends Controller
 
 
         $data = $request->validate([
-            'description' => 'string',
-            'image' => 'file'
+            'description' => 'string|required',
+            'image' => 'file|required'
         ]);
 
         $file = $request->file('image');
-        $path = $file->store('images', 'private');
+        $path = $file->store('images', 'public');
 
         Post::create([
             'description' => $data['description'],
-            'user_id' => 1,
+            'user_id' => auth()->user()->id,
             'image_path' => $path
         ]);
 
-        return redirect('/');
+        return redirect()->route('users.show', auth()->user())
+            ->with('success', 'Post published with success !');
     }
 
     /**
