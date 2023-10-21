@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,6 @@ Route::redirect('login', 'auth');
 
 Route::resource('auth', AuthController::class)
     ->only(['create', 'store', 'destroy']);
+
+Route::resource('register', RegisterController::class)
+    ->only(['create', 'store']);
