@@ -9,11 +9,9 @@ class LikeCounter extends Component
 {
 
     public $counter;
-    private $postId;
+    public $postId;
 
-    public function mount(int $postId){
-        $this->postId = $postId;
-    }
+    protected $listeners = ['renderLikeCounter' => 'render'];
 
     public function render()
     {

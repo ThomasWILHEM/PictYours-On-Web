@@ -16,11 +16,18 @@
         <div class="mb-4">
             <img src="{{ asset('storage/'.$post->image_path) }}" alt="" class="m-auto h-full w-full object-cover rounded-lg">
         </div>
-        <div class="flex justify-between mx-4">
-            <div>
+        <div class="grid grid-cols-3 w-full items-center">
+            <div class="text-left">
                 {{$post->description}}
             </div>
-            <div>
+            <div class="text-center">
+                @auth
+                    @if (auth()->user()->id != $post->user_id)
+                        <livewire:like-button postId="{{$post->id}}"/>
+                    @endif
+                @endauth
+            </div>
+            <div class="text-right">
                 Posted {{$post->created_at->diffForHumans()}}
             </div>
         </div>
