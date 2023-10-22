@@ -18,7 +18,8 @@ class PostFactory extends Factory
     {
         return [
             'description' => fake()->sentences(1, true),
-            'image_path' => 'images/test' . rand(1,9) . '.png'
+            'image_path' => 'images/test' . rand(1,9) . '.png',
+            'created_at' => fake()->dateTimeBetween('-1 month','now'),
         ];
     }
 }

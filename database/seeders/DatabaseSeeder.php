@@ -29,10 +29,10 @@ class DatabaseSeeder extends Seeder
         $posts = Post::all();
 
         foreach ($posts as $post) {
-            $users = User::all();
+            $users = User::all()->shuffle();
             for ($i=0; $i < rand(1,5); $i++) { 
                 $post->likes()->create([
-                    'user_id' => $users->random()->id
+                    'user_id' => $users->pop()->id
                 ]);
             }
         }
