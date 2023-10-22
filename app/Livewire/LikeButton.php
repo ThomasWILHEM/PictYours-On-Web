@@ -12,10 +12,14 @@ class LikeButton extends Component
     public $postId;
     public $fill = "none";
 
+    // Permit to say if the next click on the button is to like or "unlike" the post
+    public $nextClickIsLike = true;
+
     public function mount(){
         $this->post = Post::find($this->postId);
         if($this->post->likes->where("user_id", auth()->user()->id)->count() > 0){
             $this->fill = "black";
+            $this->nextClickIsLike = false;
         }else{
             $this->fill = "none";
         }
@@ -32,11 +36,17 @@ class LikeButton extends Component
                 abort(403);
             }
 
-            $this->post->likes()->create([
-                'user_id'=> auth()->user()->id,
-            ]);
+            if($this->nextClickIsLike){
+                $this->post->likes()->create([
+                    'user_id'=> auth()->user()->id,
+                ]);
 
-            $this->fill = 'black';
+                $this->fill = 'black';
+            }else{
+                $this->post->likes()->where('user_id', auth()->user()->id)->delete();
+                $this->fill = 'none';
+            }
+            $this->nextClickIsLike = !$this->nextClickIsLike;
 
             $this->dispatch('renderLikeCounter');
         } else {
