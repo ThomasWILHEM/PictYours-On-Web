@@ -24,6 +24,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        if(!auth()->check()){
+            return redirect()->route('login');
+        }
+
         return view("posts.create");
     }
 
@@ -32,8 +36,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $data = $request->validate([
             'description' => 'string|required',
             'image' => 'file|required'
