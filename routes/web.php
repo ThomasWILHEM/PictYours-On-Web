@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
@@ -25,10 +26,12 @@ Route::resource('posts', PostController::class);
 
 Route::resource('users', UserController::class);
 
-Route::redirect('login', 'auth');
+Route::redirect('login', 'auth/create')->name('login');
 
 Route::resource('auth', AuthController::class)
     ->only(['create', 'store', 'destroy']);
 
 Route::resource('register', RegisterController::class)
     ->only(['create', 'store']);
+
+Route::get('likes', [LikeController::class, 'index'])->middleware('auth')->name('likes.index');

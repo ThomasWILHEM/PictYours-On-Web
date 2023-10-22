@@ -16,6 +16,7 @@
                         </a>
                     </div>
                 @empty
+                <div></div>
                     <div class="w-full text-center text-xl">
                         No posts available
                     </div>

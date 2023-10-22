@@ -39,8 +39,13 @@
                     </a>
                 </div>
             @empty
+                <div></div>
                 <div class="w-full text-center text-xl">
-                    This user has no posts
+                    @auth
+                        You did not publish any post
+                    @else
+                        This user has no posts
+                    @endauth
                 </div>
             @endforelse
         </div>
