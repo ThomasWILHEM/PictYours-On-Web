@@ -26,6 +26,17 @@ class DatabaseSeeder extends Seeder
             }
         }
 
+        $posts = Post::all();
+
+        foreach ($posts as $post) {
+            $users = User::all();
+            for ($i=0; $i < rand(1,5); $i++) { 
+                $post->likes()->create([
+                    'user_id' => $users->random()->id
+                ]);
+            }
+        }
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

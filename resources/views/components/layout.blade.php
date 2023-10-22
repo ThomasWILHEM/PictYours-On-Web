@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <x-card class="mx-80 mt-5">
+        <x-card class="mx-16 mt-5">
             <nav>
                 <div class="flex justify-between mx-5 my-1">
                     <div>
