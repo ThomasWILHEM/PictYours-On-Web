@@ -1,4 +1,6 @@
 <x-layout>
+    @livewireScripts
+
     <x-card class="mx-80 my-10">
         <div class="flex items-center">
             <img src="{{ asset('storage/'.$user->image_path) }}" alt="" class="w-48 h-48 object-cover rounded-full">
@@ -9,6 +11,7 @@
                 <label class="text-2xl text-slate-800 font-semibold">
                     {{$user->username}}
                 </label>
+                <livewire:follower-counter user_id="{{$user->id}}"/>
             </div>
         </div>
     </x-card>
