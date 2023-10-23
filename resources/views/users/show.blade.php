@@ -14,9 +14,11 @@
                 <livewire:follower-counter user_id="{{$user->id}}"/>
             </div>
         </div>
-        <div class="mr-10">
-            <livewire:button-follow user_id="{{$user->id}}"/>
-        </div>
+        @if (auth()->user()->id !== $user->id)
+            <div class="mr-10">
+                <livewire:button-follow user_id="{{$user->id}}"/>
+            </div>
+        @endif
     </x-card>
     <x-card class="mx-80 my-10">
         <div class="w-full text-center text-3xl mb-6 border-b-4 border-slate-200 pb-4 flex justify-between">
