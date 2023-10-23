@@ -24,6 +24,10 @@ PictYours comes packed with a wide range of features to enhance your photo-shari
 
 - **User Search:** Find other users by their name or username to connect and engage with them.
 
+- **Follow users:** Follow users that you like
+
+- **View Followed Users:** Easily access all the users you've followed in one place.
+
 
 ## Installation
 
