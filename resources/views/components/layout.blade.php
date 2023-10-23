@@ -17,9 +17,18 @@
         <x-card class="mx-16 mt-5">
             <nav>
                 <div class="flex justify-between mx-5 my-1">
-                    <div>
-                        <a href="{{ route('posts.index') }}" class="text-slate-800 text-2xl">Home</a>
+                    <div class="flex">
+                        <div>
+                            <a href="{{ route('posts.index') }}" class="text-slate-800 text-2xl">Home</a>
+                        </div>
+                        @auth
+                            <div class="text-slate-800 text-2xl mx-4">|</div>
+                            <div>
+                                <a href="{{ route('following-posts.index') }}" class="text-slate-800 text-2xl">My Followings</a>
+                            </div>
+                        @endauth
                     </div>
+                    
                     <div class="text-slate-800 text-3xl">
                         Pictyours
                     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FollowingsPostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -35,3 +36,5 @@ Route::resource('register', RegisterController::class)
     ->only(['create', 'store']);
 
 Route::get('likes', [LikeController::class, 'index'])->middleware('auth')->name('likes.index');
+
+Route::get('followings-posts', [FollowingsPostController::class, 'index'])->middleware('auth')->name('following-posts.index');
