@@ -8,14 +8,14 @@ use Livewire\Component;
 class FollowerCounter extends Component
 {
 
-    public $followerCount;
+    protected $listeners = ["renderFollowers" => "render"];
 
-    public function mount(int $userId){
-        $this->followerCount = Follow::where("followed_user_id", $userId)->count();
-    }
+    public $followerCount;
+    public $userId;
 
     public function render()
     {
+        $this->followerCount = Follow::where("followed_user_id", $this->userId)->count();
         return view('livewire.follower-counter');
     }
 }
