@@ -9,12 +9,16 @@ class UserList extends Component
 {
 
     public $search = '';
+    
 
     public function render()
     {
         $users = User::where('username','LIKE','%'. $this->search .'%')
             ->orWhere('name','LIKE','%'. $this->search .'%')
             ->get();
-        return view('livewire.user-list', ['users'=> $users]);
+            
+        return view('livewire.user-list', [
+            'users'=> $users,
+        ]);
     }
 }
