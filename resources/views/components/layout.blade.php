@@ -8,12 +8,6 @@
         @livewireStyles
     </head>
     <body class="bg-gradient-to-r from-indigo-100 from-10% via-sky-100 via-30% to-emerald-100 to-90%">
-        @if (isset($success))
-            <div class="border-l-green-700 border-l-4 bg-green-400">
-                {{$success}}
-            </div>
-        @endif
-
         <x-card class="mx-16 mt-5">
             <nav>
                 <div class="flex justify-between mx-5 my-1">
@@ -59,6 +53,12 @@
                 </div>                
             </nav>
         </x-card>
+        @if (session('success'))
+            <div class="border-l-green-400 border-l-4 bg-green-200 mx-60 p-3 my-4">
+                {{session('success')}}
+            </div>
+        @endif
+
         {{$slot}}
     </body>
 </html>
