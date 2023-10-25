@@ -42,17 +42,43 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        if(auth()->user()->id != $user->id){
+            abort(403);
+        }
+
+        return view('users.edit', ['user'=> auth()->user()]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if(auth()->user()->id != $user->id){
+            abort(403);
+        }
+
+        $data = $request->validate([
+            'name' => 'string',
+            'username' => 'string',
+            'image' => 'sometimes|file'
+        ]);
+
+        $user->name = $data['name'];
+        $user->username = $data['username'];
+
+        $file = $request->file('image');
+        if($file != null){
+            $path = $file->store('profiles', 'public');
+            $user->image_path = $path;
+        }
+
+        $user->save();
+
+        return redirect()->route('users.show', auth()->user())
+            ->with('success', 'Your profile has been modified successfully!');
     }
 
     /**

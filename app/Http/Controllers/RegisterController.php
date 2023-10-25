@@ -32,7 +32,7 @@ class RegisterController extends Controller
         if($file == null){
             $path = 'profiles/hds6ge2gs4d6ge2sd1v6es16g.jpg';
         }else{
-            $path = $file->store('profiles', 'private');
+            $path = $file->store('profiles', 'public');
         }
 
         $user = User::create([
