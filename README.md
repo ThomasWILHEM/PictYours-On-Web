@@ -45,13 +45,19 @@ To run PictYours locally using Laravel, follow these steps:
    docker compose up -d
    ```
 
-3. Install the required dependencies:
+3. Install the required dependencies via composer:
 
    ```
    composer install
    ```
 
-4. Copy the `.env.example` file and rename it to `.env`.
+4. Install the required dependencies via npm:
+
+   ```
+   npm install
+   ```
+
+5. Copy the `.env.example` file and rename it to `.env`.
 
 
 6. Run migrations to create the database structure:
@@ -66,4 +72,23 @@ To run PictYours locally using Laravel, follow these steps:
    php artisan migrate:refresh --seed
    ```
 
-8. Access PictYours in your web browser at [http://localhost:8000](http://localhost:8000).
+8. Enter this command for the test images:
+
+   ```
+   php artisan storage:link
+   ```
+
+9. Launch a node server:
+
+   ```
+   npm run dev
+   ```
+
+1. Launch the php server:
+
+   ```
+   php artisan serve
+   ```
+
+
+1. Access PictYours in your web browser at [http://localhost:8000](http://localhost:8000).
