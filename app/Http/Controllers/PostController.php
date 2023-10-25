@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware("auth")
+            ->only(["create", "store", "destroy"]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -24,10 +29,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        if(!auth()->check()){
-            return redirect()->route('login');
-        }
-
         return view("posts.create");
     }
 
@@ -83,15 +84,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if(auth()->check()){
-            if(auth()->user()->id == $post->user_id){
-                $post->delete();
+        if(auth()->user()->id == $post->user_id){
+            $post->delete();
 
-                return redirect()->route('users.show', auth()->user())->with('success','Post deleted successfuly !');
-            }else{
-                abort(403);
-            }
+            return redirect()->route('users.show', auth()->user())->with('success','Post deleted successfuly !');
+        }else{
+            abort(403);
         }
-        
     }
 }
